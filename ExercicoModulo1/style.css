@@ -1,0 +1,14 @@
+body{
+    background-color: aquamarine;
+}
+
+p{
+    text-align: center;
+}
+
+input, button, .container{
+    display: block;
+    margin: 10px;
+    text-align: center;
+    margin: 0 auto;
+}

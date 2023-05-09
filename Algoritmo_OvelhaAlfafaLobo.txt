@@ -1,0 +1,13 @@
+Inicio
+    Carrega o barco com a cabra e cruza o rio;
+    Deixa a cabra na margem oposta e retorna sozinho;
+    Carrega o barco com o lobo e cruza o rio;
+    Deixa o lobo na margem oposta e carrega o barco com a cabra;
+    Retorna com a cabra;
+    Deixa a cabra na margem inicial do rio e carrega o barco com a alfafa;
+    Cruza o rio com a alfafa;
+    Deixa a alfafa na margem oposta do rio junto com o lobo;
+    Retorna sozinho;
+    Carrega o barco com a cabra e cruza o rio;
+    Deixa a cabra na margem oposta junto com a alfafa e o lobo;
+Fim 

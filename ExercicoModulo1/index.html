@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <p>Insira 3 números</p>
+    <input type="number" id="a">
+    <input type="number" id="b">
+    <input type="number" id="c">
+    <button onclick="calculaMedia()">Calcular Média</button>
+    <div id="Resultado" class="container"></div>
+  </body>
+  <script>
+    console.log("Olá, javascript rodando!");
+    function calculaMedia(){
+
+    let ar1 = [parseInt(document.getElementById("a").value), 
+    parseInt(document.getElementById("b").value), 
+    parseInt(document.getElementById("c").value)];
+
+    somaAr1 = ar1[0] + ar1[1] + ar1[2];
+
+    mediaAr1 = somaAr1/ar1.length;
+
+    console.log(somaAr1);
+    console.log(mediaAr1);
+
+    document.getElementById("Resultado").innerHTML = "Média numeros: " + mediaAr1;
+
+    }
+  </script>
+</html>
+
