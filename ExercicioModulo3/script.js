@@ -128,7 +128,7 @@ function validaEmail(elemento){
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
-        const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i; //check the format of an email address - What "i" stands for?
+        const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i; //check the format of an email address - The flag "i" indicate that capital letters and regular are ignored
         if(this.value.match(emailValido)) {
             document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
