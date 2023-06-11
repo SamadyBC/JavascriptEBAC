@@ -137,6 +137,24 @@ function validaCampoNumerico(elemento){
 
 }
 
+function validaCEP(element){
+    
+    element.addEventListener('focusout', function(event) {
+
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
+
+        let verified;
+        let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
+        //Maximo 9 algarismos e minimo 8
+        if(numero != "" && numero.match(/[0-9]*/) /**&& numero >= 0 && numero <= 10*/){ //Check whether the inputed data is not empty AND is a digit AND is between 0 and 10
+            verified = verifyMessage(element, 0);
+        } else {
+            verified = verifyMessage(element, 1);
+        }
+
+    });
+}
+
 
 function validaEmail(elemento){
 
@@ -173,21 +191,16 @@ function validaUF(element){
         const ufValida = /^[A-Z]{2}$/;
         if(this.value.match(ufValida)){
             verified = verifyMessage(element, 0);
-            /**document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
-            this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');*/
+
         }else{
             verified = verifyMessage(element, 1);
-            /**document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
-            this.classList.add('erro');
-            this.parentNode.classList.add('erro');
-            return false;*/
         }
     });
 }
 
 let camposObrigatorios = document.querySelectorAll('input.obrigatorio');
 let camposNumericos = document.querySelectorAll('input.numerico');
+let camposCEP = document.querySelectorAll('input.cep');
 let camposEmail = document.querySelectorAll('input.email');
 let camposUF = document.querySelectorAll('input.uf');
 
@@ -197,6 +210,10 @@ for( let emFoco of camposObrigatorios) {
 
 for( let emFoco of camposNumericos) {
     validaCampoNumerico(emFoco);
+}
+
+for( let emFoco of camposCEP) {
+    validaCEP(emFoco);
 }
 
 for( let emFoco of camposEmail) {
