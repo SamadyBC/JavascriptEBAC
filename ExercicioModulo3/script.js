@@ -39,6 +39,22 @@ function contagemRegressiva(numero){
 
 // contagemRegressiva(50);
 
+function verifyMessage(element, status){
+
+    if(status){
+        document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+        element.classList.add('erro');
+        element.parentNode.classList.add('erro');
+        return true;
+    }else{
+        document.querySelector('.mensagem').innerHTML = "";
+        element.classList.remove('erro');
+        element.parentNode.classList.remove('erro');
+    }
+
+    return false;
+}
+
 /* 
  * Formulário envio de dados para cálculo da média 
  */
@@ -82,16 +98,11 @@ function validaCampo(elemento){
     elemento.addEventListener('focusout', function(event) {
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
-
+        let verified;
         if(this.value == ""){
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em vermelho"; //Turn this into a function
-            this.classList.add('erro');
-            this.parentNode.classList.add('erro');
-            return false;
+            verified = verifyMessage(elemento, 1);
         } else {
-            document.querySelector('.mensagem').innerHTML = "";
-            this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            verified = verifyMessage(elemento, 0);
         }
 
     });
@@ -104,17 +115,22 @@ function validaCampoNumerico(elemento){
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
+        let verified;
         let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
 
-        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){ //Check weather the inputed data is not empty AND is a digit AND is between 0 and 10
+        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){ //Check whether the inputed data is not empty AND is a digit AND is between 0 and 10
+            verified = verifyMessage(elemento, 0);
+            /**console.log("Entrou 1");
             document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            this.parentNode.classList.remove('erro');*/
         } else {
+            verified = verifyMessage(elemento, 1);
+            /**console.log("Entrou 2");
             document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
             this.classList.add('erro');
             this.parentNode.classList.add('erro');
-            return false;
+            return false;*/
         }
 
     });
@@ -128,16 +144,19 @@ function validaEmail(elemento){
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
+        let verified;
         const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i; //check the format of an email address - The flag "i" indicate that capital letters and regular are ignored
         if(this.value.match(emailValido)) {
-            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
+            verified = verifyMessage(elemento, 0);
+            /**document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            this.parentNode.classList.remove('erro'); */
         } else {
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+            verified = verifyMessage(elemento, 1);
+            /**document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
             this.classList.add('erro');
             this.parentNode.classList.add('erro');
-            return false;
+            return false;*/
         }
 
     });
@@ -149,22 +168,26 @@ function validaUF(element){
     element.addEventListener('focusout', function(event){
         
         event.preventDefault();
+
+        let verified;
         const ufValida = /^[A-Z]{2}$/;
         if(this.value.match(ufValida)){
-            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
+            verified = verifyMessage(element, 0);
+            /**document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            this.parentNode.classList.remove('erro');*/
         }else{
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+            verified = verifyMessage(element, 1);
+            /**document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
             this.classList.add('erro');
             this.parentNode.classList.add('erro');
-            return false;
+            return false;*/
         }
     });
 }
 
 let camposObrigatorios = document.querySelectorAll('input.obrigatorio');
-let camposNumericos = document.querySelectorAll('input.numero');
+let camposNumericos = document.querySelectorAll('input.numerico');
 let camposEmail = document.querySelectorAll('input.email');
 let camposUF = document.querySelectorAll('input.uf');
 
