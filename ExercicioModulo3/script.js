@@ -47,7 +47,7 @@ const formulario1 = document.getElementById('formulario-01');
 if(formulario1)
     formulario1.addEventListener('submit', function( evento ){
 
-        evento.preventDefault();
+        evento.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
         evento.stopPropagation();
 
         if( this.getAttribute('class').match(/erro/) ) {
@@ -81,10 +81,10 @@ function validaCampo(elemento){
 
     elemento.addEventListener('focusout', function(event) {
 
-        event.preventDefault();
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
         if(this.value == ""){
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em vermelho";
+            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em vermelho"; //Turn this into a function
             this.classList.add('erro');
             this.parentNode.classList.add('erro');
             return false;
@@ -102,12 +102,12 @@ function validaCampoNumerico(elemento){
 
     elemento.addEventListener('focusout', function(event) {
 
-        event.preventDefault();
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
-        let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value; 
+        let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
 
-        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){
-            document.querySelector('.mensagem').innerHTML = "";
+        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){ //Check weather the inputed data is not empty AND is a digit AND is between 0 and 10
+            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
             this.parentNode.classList.remove('erro');
         } else {
@@ -126,11 +126,11 @@ function validaEmail(elemento){
 
     elemento.addEventListener('focusout', function(event) {
 
-        event.preventDefault();
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
-        const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i;
+        const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i; //check the format of an email address - What "i" stands for?
         if(this.value.match(emailValido)) {
-            document.querySelector('.mensagem').innerHTML = "";
+            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
             this.parentNode.classList.remove('erro');
         } else {
@@ -145,9 +145,28 @@ function validaEmail(elemento){
 }
 
 
+function validaUF(element){
+    element.addEventListener('focusout', function(event){
+        
+        event.preventDefault();
+        const ufValida = /^[A-Z]2?/;
+        if(this.value.match(ufValida)){
+            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
+            this.classList.remove('erro');
+            this.parentNode.classList.remove('erro');
+        }else{
+            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+            this.classList.add('erro');
+            this.parentNode.classList.add('erro');
+            return false;
+        }
+    });
+}
+
 let camposObrigatorios = document.querySelectorAll('input.obrigatorio');
 let camposNumericos = document.querySelectorAll('input.numero');
 let camposEmail = document.querySelectorAll('input.email');
+let camposUF = document.querySelectorAll('input.uf');
 
 for( let emFoco of camposObrigatorios) {
     validaCampo(emFoco);
@@ -159,4 +178,8 @@ for( let emFoco of camposNumericos) {
 
 for( let emFoco of camposEmail) {
     validaEmail(emFoco);
+}
+
+for (let emFoco of camposUF){
+    validaUF(emFoco);
 }
