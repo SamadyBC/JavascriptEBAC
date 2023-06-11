@@ -149,7 +149,7 @@ function validaUF(element){
     element.addEventListener('focusout', function(event){
         
         event.preventDefault();
-        const ufValida = /^[A-Z]2?/;
+        const ufValida = /^[A-Z]{2}$/;
         if(this.value.match(ufValida)){
             document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
             this.classList.remove('erro');
