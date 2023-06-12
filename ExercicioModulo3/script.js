@@ -78,6 +78,27 @@ function createDiv(){
     currentDiv.append(submitedFormDiv);
 }
 
+const formulario02 = document.getElementById("formulario-02");
+
+if(formulario02){
+    formulario02.addEventListener('submit', (event)=>{
+        
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
+        event.stopPropagation();
+
+        let formClasses = formulario02.classList;
+        
+        if( formClasses.contains("erro")) { //this.getAttribute('class').match(/erro/)
+            verifyFieldsAlert();
+            return false;
+        }else{
+            createDiv();
+            return true;
+        }
+    })
+}
+
+
 /* 
  * Formulário envio de dados para cálculo da média 
  */
@@ -229,5 +250,3 @@ for( let emFoco of camposEmail) {
 for (let emFoco of camposUF){
     validaUF(emFoco);
 }
-
-createDiv();
