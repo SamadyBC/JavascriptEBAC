@@ -65,6 +65,19 @@ function verifyFieldsAlert(){
     return alert(message);
 }
 
+function createDiv(){
+    const submitedFormDiv = document.createElement("div");
+    const currentDiv = document.getElementById("container");
+
+    const newContent = document.createTextNode("Formulario Submetido com Sucesso!");
+    
+    submitedFormDiv.appendChild(newContent);
+    submitedFormDiv.classList.add("submetido");
+
+    
+    currentDiv.append(submitedFormDiv);
+}
+
 /* 
  * Formulário envio de dados para cálculo da média 
  */
@@ -216,3 +229,5 @@ for( let emFoco of camposEmail) {
 for (let emFoco of camposUF){
     validaUF(emFoco);
 }
+
+createDiv();

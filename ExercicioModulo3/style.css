@@ -62,3 +62,9 @@ button:hover {
 .erro {
     border-color: #f00;
 }
+
+.submetido {
+    font-size: 2rem;
+    text-align: center;
+    padding: 2rem;
+}
