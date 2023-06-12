@@ -41,18 +41,28 @@ function contagemRegressiva(numero){
 
 function verifyMessage(element, status){
 
+    let elementClasses = element.classList;
+
     if(status){
-        document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
-        element.classList.add('erro');
-        element.parentNode.classList.add('erro');
+        //document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+        if(!elementClasses.contains("erro")){
+            element.classList.add('erro');
+            element.parentNode.classList.add('erro');
+        }
         return true;
     }else{
-        document.querySelector('.mensagem').innerHTML = "";
-        element.classList.remove('erro');
-        element.parentNode.classList.remove('erro');
+        //document.querySelector('.mensagem').innerHTML = "";
+        if(elementClasses.contains("erro")){
+            element.classList.remove('erro');
+            element.parentNode.classList.remove('erro');
+        }
+        return false;
     }
+}
 
-    return false;
+function verifyFieldsAlert(){
+    let message = "Verifique o preenchimento dos campos em destaque"
+    return alert(message);
 }
 
 /* 
