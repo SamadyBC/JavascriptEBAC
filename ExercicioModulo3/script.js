@@ -39,6 +39,66 @@ function contagemRegressiva(numero){
 
 // contagemRegressiva(50);
 
+function verifyMessage(element, status){
+
+    let elementClasses = element.classList;
+
+    if(status){
+        //document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+        if(!elementClasses.contains("erro")){
+            element.classList.add('erro');
+            element.parentNode.classList.add('erro');
+        }
+        return true;
+    }else{
+        //document.querySelector('.mensagem').innerHTML = "";
+        if(elementClasses.contains("erro")){
+            element.classList.remove('erro');
+            element.parentNode.classList.remove('erro');
+        }
+        return false;
+    }
+}
+
+function verifyFieldsAlert(){
+    let message = "Verifique o preenchimento dos campos em destaque"
+    return alert(message);
+}
+
+function createDiv(){
+    const submitedFormDiv = document.createElement("div");
+    const currentDiv = document.getElementById("container");
+
+    const newContent = document.createTextNode("Formulario Submetido com Sucesso!");
+    
+    submitedFormDiv.appendChild(newContent);
+    submitedFormDiv.classList.add("submetido");
+
+    
+    currentDiv.append(submitedFormDiv);
+}
+
+const formulario02 = document.getElementById("formulario-02");
+
+if(formulario02){
+    formulario02.addEventListener('submit', (event)=>{
+        
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
+        event.stopPropagation();
+
+        let formClasses = formulario02.classList;
+        
+        if( formClasses.contains("erro")) { //this.getAttribute('class').match(/erro/)
+            verifyFieldsAlert();
+            return false;
+        }else{
+            createDiv();
+            return true;
+        }
+    })
+}
+
+
 /* 
  * Formulário envio de dados para cálculo da média 
  */
@@ -82,16 +142,11 @@ function validaCampo(elemento){
     elemento.addEventListener('focusout', function(event) {
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
-
-        if(this.value == ""){
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em vermelho"; //Turn this into a function
-            this.classList.add('erro');
-            this.parentNode.classList.add('erro');
-            return false;
+        let verified;
+        if(this.value != ""){
+            verified = verifyMessage(elemento, 0);
         } else {
-            document.querySelector('.mensagem').innerHTML = "";
-            this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            verified = verifyMessage(elemento, 1);
         }
 
     });
@@ -104,21 +159,35 @@ function validaCampoNumerico(elemento){
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
+        let verified;
         let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
 
-        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){ //Check weather the inputed data is not empty AND is a digit AND is between 0 and 10
-            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
-            this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){ //Check whether the inputed data is not empty AND is a digit AND is between 0 and 10
+            verified = verifyMessage(elemento, 0);
         } else {
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
-            this.classList.add('erro');
-            this.parentNode.classList.add('erro');
-            return false;
+            verified = verifyMessage(elemento, 1);
         }
 
     });
 
+}
+
+function validaCEP(element){
+    
+    element.addEventListener('focusout', function(event) {
+
+        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
+
+        let verified;
+        let numero = this.value.match(/^[\d]{5}-[\d]{3}/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
+
+        if(numero != "" && numero.length <= 8){ //Check whether the inputed data is not empty AND is a digit AND is between 0 and 10
+            verified = verifyMessage(element, 0);
+        } else {
+            verified = verifyMessage(element, 1);
+        }
+
+    });
 }
 
 
@@ -128,16 +197,12 @@ function validaEmail(elemento){
 
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
+        let verified;
         const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i; //check the format of an email address - The flag "i" indicate that capital letters and regular are ignored
         if(this.value.match(emailValido)) {
-            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
-            this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            verified = verifyMessage(elemento, 0);
         } else {
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
-            this.classList.add('erro');
-            this.parentNode.classList.add('erro');
-            return false;
+            verified = verifyMessage(elemento, 1);
         }
 
     });
@@ -149,22 +214,20 @@ function validaUF(element){
     element.addEventListener('focusout', function(event){
         
         event.preventDefault();
+
+        let verified;
         const ufValida = /^[A-Z]{2}$/;
         if(this.value.match(ufValida)){
-            document.querySelector('.mensagem').innerHTML = ""; //Turn this into a function
-            this.classList.remove('erro');
-            this.parentNode.classList.remove('erro');
+            verified = verifyMessage(element, 0);
         }else{
-            document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
-            this.classList.add('erro');
-            this.parentNode.classList.add('erro');
-            return false;
+            verified = verifyMessage(element, 1);
         }
     });
 }
 
 let camposObrigatorios = document.querySelectorAll('input.obrigatorio');
-let camposNumericos = document.querySelectorAll('input.numero');
+let camposNumericos = document.querySelectorAll('input.numerico');
+let camposCEP = document.querySelectorAll('input.cep');
 let camposEmail = document.querySelectorAll('input.email');
 let camposUF = document.querySelectorAll('input.uf');
 
@@ -174,6 +237,10 @@ for( let emFoco of camposObrigatorios) {
 
 for( let emFoco of camposNumericos) {
     validaCampoNumerico(emFoco);
+}
+
+for( let emFoco of camposCEP) {
+    validaCEP(emFoco);
 }
 
 for( let emFoco of camposEmail) {
