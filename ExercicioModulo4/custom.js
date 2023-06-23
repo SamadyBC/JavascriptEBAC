@@ -35,6 +35,8 @@ $(document).ready(function(){
                                           'background': '#ff0',
                                           'font-weight': '100'
                                        }) */
+
+      /* Manipulação de Html e Css*/                                 
      
       $('.featured-item h4').dblclick( function(){
 
@@ -45,7 +47,6 @@ $(document).ready(function(){
         });
 
       });
-
      
       /* Manipulação de eventos*/
       
