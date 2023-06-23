@@ -22,13 +22,21 @@ $(document).ready(function(){
     // $('.featured-item:first h4').addClass('active')
     // $('.featured-item:first h4').removeClass('active')
     // $('.featured-item:first h4').toggleClass('active')
-    // $('.featured-item:first h4').hide()
-    // $('.featured-item:first h4').show()
-    // $('.featured-item:first h4').fadeIn(2000)
-    // $('.featured-item:first h4').fadeOut()
-    //  $('.featured-item:first h4').css('color', '#f00')
+    // $('.featured-item:first h4').after() Add some html after the given element
+    // $('.featured-item:first h4').before() Add  some html before some given element
+    // $('.featured-item:first h4').hide() Hide the html adding the atributte display:none at the element
+    // $('.featured-item:first h4').show() Take out the display:none atributte
+    // $('.featured-item:first h4').remove() remove the element from the DOM
+    // $('.featured-item:first h4').fadeIn(2000) Add a transition to the element's apparance
+    // $('.featured-item:first h4').fadeOut() Add a transition to the element's desapparance
+    // $('.featured-item:first h4').css('color', '#f00')
+    /* $('.featured-item:first h4').css({
+                                          'color': '#f00',
+                                          'background': '#ff0',
+                                          'font-weight': '100'
+                                       }) */
      
-     $('.featured-item h4').dblclick( function(){
+      $('.featured-item h4').dblclick( function(){
 
         $(this).css({
             'color': '#f00',
@@ -36,19 +44,19 @@ $(document).ready(function(){
             'font-weight': '100',
         });
 
-     });
+      });
 
-     /*
-      * Manipulação de eventos
-      */
-     $('.featured-item a').on('blur', function(event){
+     
+      /* Manipulação de eventos*/
+      
+     $('.featured-item a').on('click', function(event){
 
         event.preventDefault();
 
         alert('Produto esgotado');
 
      })
-     
+   
      
      
      
