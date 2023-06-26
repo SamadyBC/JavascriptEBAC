@@ -182,38 +182,53 @@ if(formulario1){
     // connected (or "attached") to various HTML elements (such as <button>, <div>, <span>, etc.) using EventTarget.addEventListener(), 
 
     formulario1.addEventListener('submit', function( evento ){
-        // The preventDefault() method of the Event interface tells the user agent, for exampleinternet browser, that if the event does not get explicitly handled, 
+        // The preventDefault() method of the Event interface tells the user agent, for example internet browsers, that if the event does not get explicitly handled, 
         // its default action should not be taken as it normally would be.
         evento.preventDefault(); 
 
         // The stopPropagation() method of the Event interface prevents further propagation of the current event in the capturing and bubbling phases.
         evento.stopPropagation();
 
-        // In this IF statement the this expression refers to the formulario01 itself. The getAttribute() method of the Element interface returns the value of a specified attribute on the element. 
-        // The matches() method of the Element interface tests whether the element would be selected by the specified CSS selector.
-        if( this.getAttribute('class').match(/erro/) ) {
+        // Sintax:
+        // In this IF statement the this expression refers to the formulario01 object itself. The getAttribute() method of the Element interface returns the value of a specified attribute on the element. 
+        // The match() method of the String Object retrieves the result of matching a string against a regular expression.
+        // Logic:
+        // Basically, the code checks wether the form has the class "erro". If so, then it stops the submit event to happen.
+
+        if( this.getAttribute('class').match(/erro/)) {
             return false;
         }
         
+        // Sintax:
+        // In this code snippet we are declaring a variable of data type FormData, which is an interface that provides a set of key/value pairs representing forms fields and their values.
+        // The formulario01 is passed as an argument to the constructor using the this keyword.
         let dados = new FormData(this);
-
+        // An empty array is declared under the name of notas, in order to hold numerical values
         let notas = [];
 
+        // Sintax:
+        // Basically, we once again use one For Of Loop to iterate through all the fields of the form. The keys method comes from the FormData Interface and it is used to generate an iterator (protocol).
+        // So, to every key inside the dados variable, we declare a variable called numero, that is defined by one ternary operation. We check if the data matches a number and 
+        // if so we convert the data into a Number Object using the Number Interface, otherwise, the variable is set to 0;
+        // Methods and Objects
+        // We use the get(argument) method to fetch the data from the specified key if the dados variable
+        // We once again use the match() method of the String Object that retrieves the result of matching a string against a regular expression.
+        // We use the Number Object to convert valueos of other datatypes in numbers. When used as a funtion, Number(arg) converts a datatype into a Number type. If the value can't be converted it return a NaN.
         for(let key of dados.keys()) {
 
             let numero = dados.get(key).match(/\d*/) ? Number(dados.get(key)) : 0; // é um número
 
-            if(!isNaN(numero)) {
+            if(!isNaN(numero)) { // Checks wheater numero is a number and if so pushes it into the array.
                 notas.push(numero);
             }
 
         }
 
-        console.log(notas);
+        console.log(notas); // In order to debug, the array object is prined in the console
 
-        texto = aprovacao(notas)
+        texto = aprovacao(notas) //In order to check if the student is aproved we call this function and we atribute the return value to variable texto
 
-        document.getElementById('resultado').innerHTML = texto;
+        document.getElementById('resultado').innerHTML = texto; //The text of the Div with id "resultado" from the html document is changed to the result obtained from the aprovacao() function.
 
     });
 }
@@ -221,9 +236,9 @@ if(formulario1){
 
 let media;
 
-// the Document's querySelectorAll method search for all of the CCS selectors that match the string passed as argument.
+// The Document's querySelectorAll method search for all of the CCS selectors that match the string passed as argument.
 // It returns a static NodeList datatype; Nodelists are a collection of nodes. Nodelists can be static and live. Live nodeLists uptdate themselves when changes in the DOM occur.
-// While, in static cases any changes in the DOM do not affect the content of the collection.
+// While in static cases, any changes in the DOM do not affect the content of the collection.
 // Besides all of this, It's important to define the DOM node datatype, which basically is an interface, an abstract base class upon which many other DOM API objects are based.
 
 let camposObrigatorios = document.querySelectorAll('input.obrigatorio'); 
