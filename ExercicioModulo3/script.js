@@ -125,12 +125,24 @@ function validaCEP(element){
 }
 
 function validaEmail(elemento){
-
+    // The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
     elemento.addEventListener('focusout', function(event) {
 
-        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
+        // The preventDefault() method of the Event interface tells the user agent, for example internet browsers, that if the event does not get explicitly handled, 
+        // its default action should not be taken as it normally would be.
+        event.preventDefault(); 
 
         let verified;
+        // Sintax:
+        // We declare a constant variable that is used to store a RegularExpression; Regular Expressions are declared between /regExp/
+        // In this specific sintax we have some regExp symbols: 
+        // 1- ^: means that the regular expression must start from the first space in the input space.
+        // 2- [a-z0-9.]: Between [] are the type of the data that is expected, in this case chars and numbers. The dot(.) inside the [] matches a literal dot 
+        // 3- +: basically is the operator to concatenate the regExps
+        // 4- \: indicates that the following character is treated specially. In this case, it means the dot doesn't have the special meaning (was escaped). It can be used to other way around
+        // 5- [a-z]+: in this case the plus matches the preceding item 1 or more times. Equivalent to {1,}
+        // 6- (\.[a-z]+): the parenthesis around any part of the regexp pattern causes that part of the mathced substring to be remembered. It can be recalled for other use
+        // 7- (x)?: matches the precending item, in this case the whole group, 0 or 1 times.
         const emailValido = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?/i; //check the format of an email address - The flag "i" indicate that capital letters and regular are ignored
         if(this.value.match(emailValido)) {
             verified = verifyMessage(elemento, 0);
@@ -152,8 +164,8 @@ function validaUF(element){
 
         let verified;
         // Sintax:
-        // We declare a constant variable that is used to store one RegularExpression; Regular Expressions are declared between /regExp/
-        // In this specific sintax we have some symbols: 
+        // We declare a constant variable that is used to store a RegularExpression; Regular Expressions are declared between /regExp/
+        // In this specific sintax we have some regExp symbols: 
         // 1- ^: means that the regular expression must start from the first space in the input space.
         // 2- [A-Z]{2}: Between [] are the type of the data that is expected, in this case chars. And between {} is the multiplicity of the data
         // 3- $: means that the regular expression must end at the the last space of the input space.
