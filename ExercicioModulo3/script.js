@@ -107,15 +107,27 @@ function validaCampoNumerico(elemento){
 }
 
 function validaCEP(element){
-    
+    // The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
     element.addEventListener('focusout', function(event) {
 
+        // The preventDefault() method of the Event interface tells the user agent, for example internet browsers, that if the event does not get explicitly handled, 
+        // its default action should not be taken as it normally would be
         event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
 
         let verified;
-        let numero = this.value.match(/^[\d]{5}-[\d]{3}/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
+        // Sintax and Logic:
+        // We declare a constant variable that is used to store a number, but there's a filter to handled 2 different data inputed;
+        // First, we check the input's field value, which is a String data type. This is done using one regExp inside the match() method. In this specific sintax we have some regExp symbols: 
+        // 1- ^: means that the regular expression must start from the first space in the input field.
+        // 2- [\d]{5}: Between [] are the type of the data that is expected, in this case digits (Equivalent to [0-9]). And between {} is the multiplicity of the data, in this case 5 times.
+        // Second, we use a ternary operation to define the way the data is handled. If the user has entered a sequence of numbers separeted by hyphen(-) then, we use the replace() method to take the hyphen away and
+        // we atribute the value without the hyphen to the variable. Although, if the user has entered a sequence of numbers without the hyphen, then we simply atribute the value to the variable.
+        // The value() method comes from the HTMLDataElement. The method return a string reflecting the value HTML attribute.
+        // The match() method comes from the String Interface. This retrieves the result of matching a string against a regular expression.
+        // The replace() method comes from the String Interface. This returns a new string with the matched data replaced by a replacement.
+        const numero = this.value.match(/^[\d]{5}-[\d]{3}/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
 
-        if(numero != "" && numero.length <= 8){ //Check whether the inputed data is not empty AND is a digit AND is between 0 and 10
+        if(numero != "" && numero.length <= 8){ //Check whether the inputed data is not empty AND is a digit 
             verified = verifyMessage(element, 0);
         } else {
             verified = verifyMessage(element, 1);
