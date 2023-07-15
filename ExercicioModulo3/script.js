@@ -40,14 +40,14 @@ function verifyMessage(element, status){
     let elementClasses = element.classList;
 
     if(status){
-        //document.querySelector('.mensagem').innerHTML = "verifique o preenchimento dos campos em destaque";
+
         if(!elementClasses.contains("erro")){
             element.classList.add('erro');
             element.parentNode.classList.add('erro');
         }
         return true;
     }else{
-        //document.querySelector('.mensagem').innerHTML = "";
+
         if(elementClasses.contains("erro")){
             element.classList.remove('erro');
             element.parentNode.classList.remove('erro');
@@ -57,11 +57,28 @@ function verifyMessage(element, status){
 }
 
 function verifyFieldsAlert(){
+    // This function is used to throw an alert message to the user informing to correct the specified fields
     let message = "Verifique o preenchimento dos campos em destaque"
     return alert(message);
 }
 
 function createDiv(){
+    // This function is used when the form is submitted. 
+    // Logic and Sintax:
+    // First, we declared one constant variable of the Element type. In this case, the Element is a div.
+    // After that, we define another constant variable with one Element, wich is one div with the specified id.
+    // Finally, we create a third constant variable of the textNode data type. This variable has a content specified at the parameter of the method.
+    // Later, we append to the div we created the content of the textNode and we also add a new class called "submetido"
+    // At the end of the process we append to the current Div element the newly created div.
+    // Some important methods:
+    // The document.createElement() method creates the HTML element specified by tagName("div").
+    // The getElementById() method of the Document interface returns an Element object representing the element whose id property matches the specified string.
+    // The createTextNode() method creates a new Text node.
+    // The appendChild() method of the Node interface adds a node to the end of the list of children of a specified parent node.
+    // The Element.classList is a read-only property that returns a live DOMTokenList collection of the class attributes of the element.
+    // Although the classList property itself is read-only, you can modify its associated DOMTokenList using the add()
+    // The add() method of the DOMTokenList interface adds the given tokens to the list, omitting any that are already present.
+    // The Document.append() method inserts a set of Node objects or string objects after the last child of the document.
     const submitedFormDiv = document.createElement("div");
     const currentDiv = document.getElementById("container");
 
@@ -74,11 +91,17 @@ function createDiv(){
 }
 
 function validaCampo(elemento){
-
+    // The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
     elemento.addEventListener('focusout', function(event) {
+       
+        // The preventDefault() method of the Event interface tells the user agent, for example internet browsers, that if the event does not get explicitly handled, 
+        // its default action should not be taken as it normally would be
+        event.preventDefault();
 
-        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
         let verified;
+        // Sintax and Logic:
+        // Basically we check wheater the inputed Element value. If this is empty then we call an error message.
+        // Otherwise, we allow the regular flow of the webpage.
         if(this.value != ""){
             verified = verifyMessage(elemento, 0);
         } else {
@@ -89,15 +112,27 @@ function validaCampo(elemento){
 }
 
 function validaCampoNumerico(elemento){
-
+    // The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
     elemento.addEventListener('focusout', function(event) {
-
-        event.preventDefault(); //Prevent the default behaviour of the event, in this case is preventing the submission of the event;
+        
+        // The preventDefault() method of the Event interface tells the user agent, for example internet browsers, that if the event does not get explicitly handled, 
+        // its default action should not be taken as it normally would be
+        event.preventDefault();
 
         let verified;
-        let numero = this.value.match(/^[\d]5-[\d]3/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
+        // Sintax and Logic:
+        // We declare a constant variable that is used to store a number, but there's a filter to handled 2 different data inputed;
+        // First, we check the input's field value, which is a String data type. This is done using one regExp inside the match() method. In this specific sintax we have some regExp symbols: 
+        // 1- ^: means that the regular expression must start from the first space in the input field.
+        // 2- [\d]{5}: Between [] are the type of the data that is expected, in this case digits (Equivalent to [0-9]). And between {} is the multiplicity of the data, in this case 5 times.
+        // Second, we use a ternary operation to define the way the data is handled. If the user has entered a sequence of numbers separeted by hyphen(-) then, we use the replace() method to take the hyphen away and
+        // we atribute the value without the hyphen to the variable. Although, if the user has entered a sequence of numbers without the hyphen, then we simply atribute the value to the variable.
+        // The value() method comes from the HTMLDataElement. The method return a string reflecting the value HTML attribute.
+        // The match() method comes from the String Interface. This retrieves the result of matching a string against a regular expression.
+        // The replace() method comes from the String Interface. This returns a new string with the matched data replaced by a replacement.
+        let numero = this.value.match(/^[\d]{5}-[\d]{3}/) ? this.value.replace(/-/, "") : this.value;
 
-        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){ //Check whether the inputed data is not empty AND is a digit AND is between 0 and 10
+        if(numero != "" && numero.match(/[0-9]*/) && numero >= 0 && numero <= 10){
             verified = verifyMessage(elemento, 0);
         } else {
             verified = verifyMessage(elemento, 1);
@@ -125,7 +160,7 @@ function validaCEP(element){
         // The value() method comes from the HTMLDataElement. The method return a string reflecting the value HTML attribute.
         // The match() method comes from the String Interface. This retrieves the result of matching a string against a regular expression.
         // The replace() method comes from the String Interface. This returns a new string with the matched data replaced by a replacement.
-        const numero = this.value.match(/^[\d]{5}-[\d]{3}/) ? this.value.replace(/-/, "") : this.value; //Check weather the inputed data is a "CEP" or not
+        const numero = this.value.match(/^[\d]{5}-[\d]{3}/) ? this.value.replace(/-/, "") : this.value;
 
         if(numero != "" && numero.length <= 8){ //Check whether the inputed data is not empty AND is a digit 
             verified = verifyMessage(element, 0);
