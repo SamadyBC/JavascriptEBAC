@@ -738,3 +738,11 @@ a {
 	} 
 
 }
+
+::placeholder {
+	color: #fff
+}
+
+#email {
+	position:relative;
+}
