@@ -59,7 +59,15 @@ $(document).ready(function(){
      })
    
      
-     
+   
+     $('.featured-item:nth(1)')
+        .hide(500, function(){
+          console.log( $(this).find('h4').text() + "esgotado");
+        })
+        .show(500, function(){
+          console.log( $(this).find('h4').text() + "em estoque");
+        })
+          
      
 
 
