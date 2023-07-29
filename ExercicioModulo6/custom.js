@@ -147,6 +147,7 @@ $(document).ready(function () {
    * TODO:
    * 1- Incrementar se o nome é valido (mais de 2 caracteres)
    * 2- Checar se o email é valido (necessita do formato padrao de email /[a-z]@[a-z]\.com/)
+   * 3- Checar a validade da entrada do campo do CPF
    */
 
   function valFormFields(element) {
