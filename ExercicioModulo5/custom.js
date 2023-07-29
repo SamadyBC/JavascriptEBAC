@@ -91,7 +91,6 @@ $(document).ready(function () {
         {
           opacity: "toggle",
           top: "-50",
-          //border: "2px solid #f00",
         },
         time,
         function () {
@@ -99,5 +98,26 @@ $(document).ready(function () {
         }
       );
     }
+  });
+
+  /*
+   * Event Listener .nav-modal-open
+   */
+
+  $(".nav-modal-open").on("click", function (event) {
+    event.preventDefault();
+
+    let element = $(this).attr("rel");
+    let modalTitle = $(this).text();
+    let modalContent = $("#" + element).html();
+
+    //let modalBody = $("div.modal-body").html();
+    //modalBody.html(modalContent);
+
+    $(".modal-body").html(modalContent);
+    $(".modal-header h5.modal-title").html(modalTitle);
+
+    let modal1 = new bootstrap.Modal($("#modelId"));
+    modal1.show();
   });
 });
