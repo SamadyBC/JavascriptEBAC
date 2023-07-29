@@ -153,10 +153,13 @@ $(document).ready(function () {
     if (element.val() == "") {
       console.log("O campo " + element.attr("name") + " é obrigatório");
 
+      element.parent().find(".text-muted").show();
+
       element.addClass("invalid");
 
       return false;
     } else {
+      element.parent().find(".text-muted").hide();
       element.removeClass("invalid");
     }
   }
@@ -171,5 +174,34 @@ $(document).ready(function () {
 
   $("body").on("blur", "#email", function () {
     valFormFields($(this));
+  });
+
+  $("body").on("blur", "#date", function () {
+    valFormFields($(this));
+    $(this).mask("00/00/0000");
+  });
+
+  $("body").on("blur", "#time", function () {
+    valFormFields($(this));
+    $(this).mask("00:00:00");
+  });
+
+  $("body").on("blur", "#cep", function () {
+    valFormFields($(this));
+    $(this).mask("00000-000");
+  });
+
+  $("body").on("blur", "#phone", function () {
+    valFormFields($(this));
+    $(this).mask("00000-0000");
+  });
+
+  $("body").on("focus", "#cpf", function () {
+    $(this).mask("000.000.000-00");
+  });
+
+  $("body").on("blur", "#cpf", function () {
+    valFormFields($(this));
+    $(this).mask("000.000.000-00");
   });
 });
