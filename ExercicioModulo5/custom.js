@@ -120,4 +120,56 @@ $(document).ready(function () {
     let modal1 = new bootstrap.Modal($("#modelId"));
     modal1.show();
   });
+
+  /*
+   * Event Listener submit de form
+   */
+
+  $("body").on("submit", ".modal-body .form", function (event) {
+    event.preventDefault();
+
+    const inputName = $("#nome");
+    const inputEmail = $("#email");
+
+    valFormFields(inputName);
+    valFormFields(inputEmail);
+
+    if (inputName.hasClass("invalid") || inputEmail.hasClass("invalid")) {
+      console.log("Verificar campos obrigatorios");
+      return false;
+    } else {
+      $(this).submit();
+    }
+  });
+
+  /*
+   * Funcao de Validacao dos Campos do Formulario
+   * TODO:
+   * 1- Incrementar se o nome é valido (mais de 2 caracteres)
+   * 2- Checar se o email é valido (necessita do formato padrao de email /[a-z]@[a-z]\.com/)
+   */
+
+  function valFormFields(element) {
+    if (element.val() == "") {
+      console.log("O campo " + element.attr("name") + " é obrigatório");
+
+      element.addClass("invalid");
+
+      return false;
+    } else {
+      element.removeClass("invalid");
+    }
+  }
+
+  /*
+   * Event Listener blur de campos de form
+   */
+
+  $("body").on("blur", "#nome", function () {
+    valFormFields($(this));
+  });
+
+  $("body").on("blur", "#email", function () {
+    valFormFields($(this));
+  });
 });
