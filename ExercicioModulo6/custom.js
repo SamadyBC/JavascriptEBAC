@@ -176,6 +176,10 @@ $(document).ready(function () {
     valFormFields($(this));
   });
 
+  $("body").on("focus", "#date", function () {
+    $(this).datepicker();
+  });
+
   $("body").on("blur", "#date", function () {
     valFormFields($(this));
     $(this).mask("00/00/0000");
