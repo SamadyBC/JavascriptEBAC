@@ -147,16 +147,20 @@ $(document).ready(function () {
    * TODO:
    * 1- Incrementar se o nome é valido (mais de 2 caracteres)
    * 2- Checar se o email é valido (necessita do formato padrao de email /[a-z]@[a-z]\.com/)
+   * 3- Checar a validade da entrada do campo do CPF
    */
 
   function valFormFields(element) {
     if (element.val() == "") {
       console.log("O campo " + element.attr("name") + " é obrigatório");
 
+      element.parent().find(".text-muted").show();
+
       element.addClass("invalid");
 
       return false;
     } else {
+      element.parent().find(".text-muted").hide();
       element.removeClass("invalid");
     }
   }
@@ -171,5 +175,38 @@ $(document).ready(function () {
 
   $("body").on("blur", "#email", function () {
     valFormFields($(this));
+  });
+
+  $("body").on("focus", "#date", function () {
+    $(this).datepicker();
+  });
+
+  $("body").on("blur", "#date", function () {
+    valFormFields($(this));
+    $(this).mask("00/00/0000");
+  });
+
+  $("body").on("blur", "#time", function () {
+    valFormFields($(this));
+    $(this).mask("00:00:00");
+  });
+
+  $("body").on("blur", "#cep", function () {
+    valFormFields($(this));
+    $(this).mask("00000-000");
+  });
+
+  $("body").on("blur", "#phone", function () {
+    valFormFields($(this));
+    $(this).mask("00000-0000");
+  });
+
+  $("body").on("focus", "#cpf", function () {
+    $(this).mask("000.000.000-00");
+  });
+
+  $("body").on("blur", "#cpf", function () {
+    valFormFields($(this));
+    $(this).mask("000.000.000-00");
   });
 });

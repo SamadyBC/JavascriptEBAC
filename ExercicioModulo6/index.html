@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./vendor/owl/css/owl.css" />
     <link rel="stylesheet" href="./vendor/fontawesome/fontawesome.css" />
+    <link rel="stylesheet" href="./vendor/jquery-ui/jquery-ui.min.css" />
     <link rel="stylesheet" href="style.css" />
     <title>Bootstrap and jQuery Demo</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"
-          ><img src="assets/images/header-logo.png" alt=""
-        /></a>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="d-flex flex-column container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="assets/images/header-logo.png" alt="" />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -31,7 +32,6 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.html">Home</a>
-              <!-- Ideia eh tornar ativo on blur - mouse on-->
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#produtos">Produtos</a>
@@ -50,6 +50,47 @@
         </div>
       </div>
     </nav>
+
+    <!--Teste de Flexbox
+    <div class="d-flex flex-row justify-content-center samid">
+      <div class="p-2 bd-highlight samyro-lyro">Flex item 1</div>
+      <div class="p-2 bd-highlight samyro-lyro">Flex item 2</div>
+      <div class="p-2 bd-highlight samyro-lyro">Flex item 3</div>
+    </div>
+
+    Teste de Flexbox em Navbar
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="d-flex flex-column container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>-->
 
     <div class="banner">
       <div class="container">
@@ -191,11 +232,16 @@
           <div class="col-md-12">
             <div class="footer-menu">
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">How It Works ?</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="#top">Home</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li>
+                  <a href="#sobre" rel="sobre" class="nav-modal-open">Sobre</a>
+                </li>
+                <li>
+                  <a href="#contato" rel="contato" class="nav-modal-open"
+                    >Contato</a
+                  >
+                </li>
               </ul>
             </div>
           </div>
@@ -298,7 +344,7 @@
             name="date"
             id="date"
             class="form-control"
-            placeholder="Digite seu e-mail"
+            placeholder="Digite a data"
             aria-describedby="helpDate"
           />
           <small id="helpDate" class="text-muted">
@@ -343,8 +389,9 @@
             class="form-control"
             placeholder="Digite seu phone"
             aria-describedby="helpCelular"
+            required
           />
-          <!-- required -->
+
           <small id="helpCelular" class="text-muted">
             Digite um celular válido
           </small>
@@ -359,8 +406,9 @@
             class="form-control"
             placeholder="Digite seu cpf"
             aria-describedby="helpCPF"
+            required
           />
-          <!-- required -->
+
           <small id="helpCPF" class="text-muted"> Digite um CPF válido </small>
         </div>
 
@@ -387,8 +435,8 @@
     <script src="./vendor/jquery/jquery-3.6.0.min.js"></script>
     <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="./vendor/owl/js/owl.js"></script>
-    <!-- <script src="./vendor/jquery-mask/jquery.mask.min.js"></script> -->
-    <!-- <script src="./vendor/jquery-ui/jquery-ui.min.js"></script> -->
+    <script src="./vendor/jquery-mask/jquery.mask.min.js"></script>
+    <script src="./vendor/jquery-ui/jquery-ui.min.js"></script>
 
     <!-- Scripts Customizados -->
     <script src="custom.js"></script>

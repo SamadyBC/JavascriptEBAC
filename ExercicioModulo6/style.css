@@ -735,3 +735,14 @@ a {
 .invalid {
   border-color: #f00;
 }
+
+.text-muted {
+  display: none;
+}
+.samid {
+  background-color: #4a4a4a;
+}
+
+.samyro-lyro {
+  background-color: tomato;
+}
