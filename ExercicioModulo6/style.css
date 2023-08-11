@@ -67,10 +67,13 @@ a {
   position: relative;
   padding: 25px 0px;
 }
+/*
 .bg-dark {
   background-color: #fff !important;
   border-bottom: 1px solid #eee;
 }
+*/
+/*
 #navbarResponsive {
   z-index: 999;
   position: absolute;
@@ -78,6 +81,7 @@ a {
   top: 105px;
   transform: translateX(-50%);
 }
+
 .navbar-dark .navbar-nav .nav-item {
   margin: 0px 15px;
 }
@@ -671,6 +675,7 @@ a {
   .navbar:after {
     display: none;
   }
+  /*
   #navbarResponsive {
     z-index: 99999;
     position: absolute;
@@ -689,6 +694,7 @@ a {
   .navbar-dark .navbar-nav .nav-link {
     padding: 15px 0px;
   }
+  */
   .featured-page #filters {
     text-align: right;
   }
