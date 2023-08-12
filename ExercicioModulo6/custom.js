@@ -209,4 +209,17 @@ $(document).ready(function () {
     valFormFields($(this));
     $(this).mask("000.000.000-00");
   });
+
+  /*
+   *Event Listener - Dark mode button
+   *
+   */
+
+  $(".switch").on("click", function () {
+    console.log("Entrou funcao dark mode")
+    /*$([".navbar [class*='-light']", ".navbar [class*='-dark']"]).each((i, element) => {
+      $(element).toggleClass("bg-light bg-dark");
+      $(element).toggleClass("navbar-light navbar-dark"); 
+    });*/
+  });
 });
