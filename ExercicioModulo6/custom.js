@@ -13,11 +13,34 @@ $(document).ready(function () {
 
   // Configuração de produtos
 
+  function gerarNumeroAleatorio(){
+    return Math.floor(Math.random() * 100);
+  };
+
+  function verificaEstoque(){
+
+    randomNumber = gerarNumeroAleatorio();
+    console.log(randomNumber);
+
+    let numberProducts = $('.featured-item').length;
+    for (let i = 0; i < numberProducts; i++){
+      let quocientNumber = i * randomNumber;
+      console.log(quocientNumber);
+      if(quocientNumber % 2 != 0){
+        $(".featured-item:nth("+ i +") a ").html("Indisponivel");
+        $(".featured-item:nth("+ i +") a ").toggleClass("btn-primary btn-dark");
+      }
+    }
+  }
+
   $(".featured-item a").addClass("btn btn-primary stretch-link");
 
   $(".featured-item:first h4").append(
     '<span class="badge bg-secondary">Novo</span>'
   );
+
+  verificaEstoque();
+
   // $('.featured-item:first h4').start('<span class="badge bg-secondary">Novo</span>')
   // $('.featured-item:first h4').html('<span class="badge bg-secondary">Novo</span>')
   // $('.featured-item:first h4').addClass('active')
@@ -59,7 +82,7 @@ $(document).ready(function () {
    * Callback
    * Entendendo ações que começam ao termino de outra
    */
-
+/*
   $(".featured-item:nth(1)")
     .hide(500, function () {
       console.log($(this).find("h4").text() + " esgotado");
@@ -67,12 +90,12 @@ $(document).ready(function () {
     .show(500, function () {
       console.log($(this).find("h4").text() + " em estoque");
     });
-
+*/
   /*
    * Animaçoes
    *
    */
-
+/*
   const time = 1000;
 
   $(".featured-item:nth(0)")
@@ -82,7 +105,7 @@ $(document).ready(function () {
     .fadeIn(time)
     .toggle(time)
     .toggle(time);
-
+*/
   $("#form-submit").on("click", function (event) {
     event.preventDefault();
     if ($("#email").val() != "") {
@@ -122,7 +145,7 @@ $(document).ready(function () {
   });
 
   /*
-   * Event Listener submit de form
+   * Event Listener submit form
    */
 
   $("body").on("submit", ".modal-body .form", function (event) {
@@ -220,7 +243,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     console.log("Entrou funcao dark mode");
-    let elemSelected = $(".navbar[class*='-light']").length; // Por que retorna 10 a partir da 3 utilizacao do botao?
+    let elemSelected = $(".navbar[class*='-light']").length;
     console.log(elemSelected);
     if(elemSelected){
       console.log('Elemento encontrado');
@@ -228,19 +251,19 @@ $(document).ready(function () {
       $(".navbar[class*='-light']").toggleClass("navbar-light navbar-dark");
       $(".navbar[class*='-light']").toggleClass("bg-light bg-dark");
       $('.section-heading h1').toggleClass("text-light");
+      $('.featured-item h4').toggleClass('text-light');
+      
+      let testeBtn = $(".featured-item a.btn-dark").length;
+      console.log(testeBtn);
+      $(".featured-item a.btn-dark").toggleClass('btn-dark btn-light');
     } else {
       console.log('Elemento nao encontrado');
       $('body').toggleClass('bg-dark');
       $(".navbar[class*='-dark']").toggleClass("navbar-light navbar-dark");
       $(".navbar[class*='-dark']").toggleClass("bg-light bg-dark");
       $('.section-heading h1').toggleClass("text-light");
+      $('.featured-item h4').toggleClass('text-light');
+      $(".featured-item a.btn-light").toggleClass('btn-dark btn-light');
     }
-
-    
-
-    /*$([".navbar [class*='-light']", ".navbar [class*='-dark']"]).each((i, element) => {
-      $(element).toggleClass("bg-light bg-dark");
-      $(element).toggleClass("navbar-light navbar-dark"); 
-    });*/
   });
 });
