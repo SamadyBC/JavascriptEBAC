@@ -13,7 +13,7 @@ $(document).ready(function () {
 
   // Configuração de produtos
 
-  $(".featured-item a").addClass("btn btn-dark stretch-link");
+  $(".featured-item a").addClass("btn btn-primary stretch-link");
 
   $(".featured-item:first h4").append(
     '<span class="badge bg-secondary">Novo</span>'
@@ -215,8 +215,29 @@ $(document).ready(function () {
    *
    */
 
-  $(".switch").on("click", function () {
-    console.log("Entrou funcao dark mode")
+  $(".switch").on("click", function (event) {
+
+    event.preventDefault();
+
+    console.log("Entrou funcao dark mode");
+    let elemSelected = $(".navbar[class*='-light']").length; // Por que retorna 10 a partir da 3 utilizacao do botao?
+    console.log(elemSelected);
+    if(elemSelected){
+      console.log('Elemento encontrado');
+      $('body').toggleClass('bg-dark');
+      $(".navbar[class*='-light']").toggleClass("navbar-light navbar-dark");
+      $(".navbar[class*='-light']").toggleClass("bg-light bg-dark");
+      $('.section-heading h1').toggleClass("text-light");
+    } else {
+      console.log('Elemento nao encontrado');
+      $('body').toggleClass('bg-dark');
+      $(".navbar[class*='-dark']").toggleClass("navbar-light navbar-dark");
+      $(".navbar[class*='-dark']").toggleClass("bg-light bg-dark");
+      $('.section-heading h1').toggleClass("text-light");
+    }
+
+    
+
     /*$([".navbar [class*='-light']", ".navbar [class*='-dark']"]).each((i, element) => {
       $(element).toggleClass("bg-light bg-dark");
       $(element).toggleClass("navbar-light navbar-dark"); 
