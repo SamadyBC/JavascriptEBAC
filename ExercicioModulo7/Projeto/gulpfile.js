@@ -3,12 +3,15 @@ const gulp_concat = require("gulp-concat");
 const gulp_cssmin = require("gulp-cssmin");
 const gulp_rename = require("gulp-rename");
 const gulp_uglify = require("gulp-uglify");
+const image = require("gulp-image");
+
 /** 
 import gulp from 'gulp';
 import gulp_concat from 'gulp-concat';
 import gulp_cssmin from 'gulp-cssmin';
 import gulp_rename from 'gulp-rename';
 import gulp_uglify from 'gulp-uglify';
+import image from 'gulp-image';
 */
 
 function tarefasCSS(cb) {
@@ -30,5 +33,23 @@ function tarefasJS() {
     .pipe(gulp.dest("./dist/js"));
 }
 
+function tarefasImagem(){
+    return gulp
+        .src("./src/images/*")
+        .pipe(image({
+            pngquant: true,
+            optipng: false,
+            zopflipng: true,
+            jpegRecompress: false,
+            mozjpeg: true,
+            gifsicle: true,
+            svgo: true,
+            concurrent: 10,
+            quiet: true
+        }))
+        .pipe(gulp.dest("./dist/images"));
+}
+
 exports.styles = tarefasCSS;
 exports.scripts = tarefasJS;
+exports.images = tarefasImagem;
