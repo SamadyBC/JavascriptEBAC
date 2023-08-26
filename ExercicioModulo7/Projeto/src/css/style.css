@@ -127,7 +127,7 @@ a {
 /* Banner Style */
 .banner {
   margin-top: 50px; /* Modificado no intuito de deixar mais facil de controlar o dark mode*/
-  background-image: url(src/images/banner-bg.jpg);
+  background-image: url(assets/images/banner-bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 150px 0px;
