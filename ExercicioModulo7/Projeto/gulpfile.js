@@ -3,7 +3,7 @@ const gulp_concat = require("gulp-concat");
 const gulp_cssmin = require("gulp-cssmin");
 const gulp_rename = require("gulp-rename");
 const gulp_uglify = require("gulp-uglify");
-const image = require("gulp-image");
+const image = require("gulp-imagemin");
 
 /** 
 import gulp from 'gulp';
