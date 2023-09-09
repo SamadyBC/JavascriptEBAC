@@ -47,7 +47,7 @@ function tarefasJS(callback) {
       //"./vendor/jquery-ui/jquery-ui.js",
       "./src/js/custom.js",
     ]) // Busca os arquivos que vai usar em uma array de paths
-    .pipe(babel({
+    .pipe(babel({ //Por que o babel impede que o botao dark mode funcione de forma apropriada? Além dos Modais que tambem param de funcionar ao utilizar o babel
       comments: false,
       presets: ['@babel/env']
     }))
@@ -98,7 +98,12 @@ gulp.task("serve", function(){
   gulp.watch("./src/**/*").on("change", reload);
 })
 
-const process = series(tarefasHTML, tarefasJS, tarefasCSS);
+function end(callback){
+  console.log("Tarefas Concluidas");
+  return callback();
+}
+
+const process = parallel(tarefasHTML, tarefasJS, tarefasCSS, end);
 
 exports.styles = tarefasCSS;
 exports.scripts = tarefasJS;
