@@ -7,6 +7,8 @@ const gulp_uglify = require("gulp-uglify");
 const image = require("gulp-imagemin");
 const htmlmin = require("gulp-htmlmin");
 const babel = require("gulp-babel");
+const browser_sync = require("browser-sync").create();
+const reload = browser_sync.reload;
 
 /** 
 import gulp from 'gulp';
@@ -42,7 +44,7 @@ function tarefasJS(callback) {
       "./node_modules/bootstrap/dist/js/bootstrap.js",
       "./vendor/owl/js/owl.js",
       "./vendor/jquery-mask/jquery.mask.js",
-      "./vendor/jquery-ui/jquery-ui.js",
+      //"./vendor/jquery-ui/jquery-ui.js",
       "./src/js/custom.js",
     ]) // Busca os arquivos que vai usar em uma array de paths
     .pipe(babel({
@@ -85,7 +87,21 @@ function tarefasHTML(callback) {
   return callback();
 }
 
+gulp.task("serve", function(){
+
+  browser_sync.init({
+    server: {
+      baseDir: "./dist"
+    }
+  })
+  gulp.watch("./src/**/*").on("change", process); // repete o processo quando alterar algo em src
+  gulp.watch("./src/**/*").on("change", reload);
+})
+
+const process = series(tarefasHTML, tarefasJS, tarefasCSS);
+
 exports.styles = tarefasCSS;
 exports.scripts = tarefasJS;
 exports.images = tarefasImagem;
-exports.default = parallel(tarefasHTML, tarefasJS, tarefasCSS);
+
+exports.default = process;
