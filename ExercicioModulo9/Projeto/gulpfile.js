@@ -103,7 +103,7 @@ function end(callback){
   return callback();
 }
 
-const process = parallel(tarefasHTML, tarefasJS, tarefasCSS, end);
+const process = parallel(tarefasHTML, tarefasJS, tarefasCSS, tarefasImagem, end);
 
 exports.styles = tarefasCSS;
 exports.scripts = tarefasJS;
