@@ -29,9 +29,9 @@ function tarefasCSS(callback) {
       "./vendor/jquery-ui/jquery-ui.css",
       "./src/css/style.css",
     ]) // Busca os arquivos que vai usar em uma array de paths
-    .pipe(gulp_concat("styles.css"))
+    .pipe(gulp_concat("styles.css")) // Unifica os arquivos o que ira diminuir o tempo de carregamento da pagina devido a ter menos chamadas.
     .pipe(gulp_cssmin())
-    .pipe(gulp_rename({ suffix: ".min" })) // lib.min.css
+    .pipe(gulp_rename({ suffix: ".min" })) // lib.min.css - ese argumento na verdade é um objeto com a propriedade suffix igual a .min
     .pipe(gulp.dest("./dist/css")); // Basicamente utiliza o comando gulp.dest para definir o diretorio destino, o qual é interpretado como o diretorio de produção
 
   return callback();

@@ -12,7 +12,7 @@ $(document).ready(function () {
   console.log(titulos.first());
 
   // Configuração de produtos
-
+  let randomNumber;
   function gerarNumeroAleatorio(){
     return Math.floor(Math.random() * 100);
   };
