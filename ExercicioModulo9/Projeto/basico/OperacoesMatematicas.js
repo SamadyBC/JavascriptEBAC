@@ -26,10 +26,8 @@ class OperacoesMatematicas {
     }
 
     aprovacao(valores) {
-
-        let valoresNormalizados = this.normalizacao(valores);
-        let media = this.calcularMedia(valoresNormalizados); // Usando o método da classe
-        let condicao = media >= 0.5 ? "aprovado" : "reprovado";
+        let media = this.calcularMedia(valores); // Usando o método da classe
+        let condicao = media >= 8 ? "aprovado" : "reprovado";
         return 'Média: ' + media + ' - Resultado: ' + condicao;
     }
 
