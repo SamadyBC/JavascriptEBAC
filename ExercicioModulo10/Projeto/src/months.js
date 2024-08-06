@@ -1,54 +1,73 @@
 let months = [
     {   
-        month: 'Janeiro',
-        dias: 31
+        mes: 'Janeiro',
+        dias: 31,
+        cor: 'Amarelo'
     },
     {
-        month: 'Fevereiro',
-        dias: 28
+        mes: 'Fevereiro',
+        dias: 28,
+        cor: 'Roxo'
     },
     {
-        month: 'Março',
-        dias: 31
+        mes: 'Março',
+        dias: 31,
+        cor: 'Verde'
     },
     {
-        month: 'Abril',
-        dias: 30
+        mes: 'Abril',
+        dias: 30,
+        cor: 'Bege'
     },
     {
-        month: 'Maio',
-        dias: 31
+        mes: 'Maio',
+        dias: 31,
+        cor: 'Marrom'
     },
     {
-        month: 'Junho',
-        dias: 30
+        mes: 'Junho',
+        dias: 30,
+        cor: 'Laranja'
     },
     {
-        month: 'Julho',
-        dias: 31
+        mes: 'Julho',
+        dias: 31,
+        cor: 'Branco'
     },
     {
-        month: 'Agosto',
-        dias: 31
+        mes: 'Agosto',
+        dias: 31,
+        cor: 'Cinza'
     },
     {
-        month: 'Setembro',
-        dias: 30
+        mes: 'Setembro',
+        dias: 30,
+        cor: 'Preto'
     },
     {
-        month: 'Outubro',
-        dias: 31
+        mes: 'Outubro',
+        dias: 31,
+        cor: 'Rosa'
     },
     {
-        month: 'Novembro',
-        dias: 30
+        mes: 'Novembro',
+        dias: 30,
+        cor: 'Azul'
     },
     {
-        month: 'Dezembro',
-        dias: 31
+        mes: 'Dezembro',
+        dias: 31,
+        cor: 'Vermelho'
     }
 ]
 
+/*
+let months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março"
+]
+*/
 function getMonths(){
     return months;
 }
