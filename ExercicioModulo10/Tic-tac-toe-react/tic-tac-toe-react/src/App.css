@@ -93,7 +93,7 @@ h1 {
   left: 5%;
   transform: skewY(-45deg);
 }
-/*
+
 .game-over {
   text-align: center;
   border: #5468ff 8px;
@@ -110,4 +110,4 @@ h1 {
   color: white;
   width: 100%;
   font-size: 1.5em;
-}*/
+}
