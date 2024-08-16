@@ -8,6 +8,15 @@
   <body>
     <h1 id="title"></h1>
     <h2>Criando app com Node</h2>
-    <script src="./main.js"></script>
+    <ul id="list"></ul>
+    <form action="http://localhost:3001/contact" method="post">
+      <input
+        type="text"
+        name="name"
+        placeholder="digite o nome a ser cadastrado"
+      />
+    </form>
+
+    <!-- <script src="./main.js"></script> Nao precisa dessa chamada pois estamos utilizando Webpack que ja realiza isso -->
   </body>
 </html>
