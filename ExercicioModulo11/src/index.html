@@ -10,11 +10,20 @@
     <h2>Criando app com Node</h2>
     <ul id="list"></ul>
     <form action="http://localhost:3001/contact" method="post">
+      <label for="action">Selecione a ação:</label>
+      <select name="action" id="action">
+        <option value="create">Cadastrar dados</option>
+        <option value="update">Atualizar dados</option>
+        <option value="delete">Excluir dados</option>
+      </select>
+      <br />
       <input
         type="text"
+        id="data-input"
         name="name"
-        placeholder="digite o nome a ser cadastrado"
+        placeholder="Digite o nome a ser cadastrado"
       />
+      <button type="submit">Enviar</button>
     </form>
 
     <!-- <script src="./main.js"></script> Nao precisa dessa chamada pois estamos utilizando Webpack que ja realiza isso -->

@@ -36,10 +36,6 @@ const contacts = [
   },
 ];
 
-server.get("/", () => {
-  console.log("executando a rota / com o GET e nodemon");
-});
-
 server.get("/contact", (req, res) => {
   return res.json(contacts);
 });
