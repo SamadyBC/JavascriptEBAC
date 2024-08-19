@@ -44,7 +44,11 @@ server.get("/contact", (req, res) => {
 server.post("/contact", (req, res) => {
   const { name } = req.body;
   contacts.push({ name: name });
-  return res.json(contacts);
+  return res.json({
+    success: true,
+    message: "Contato adicionado com sucesso!",
+    contacts: contacts,
+  });
 });
 
 server.put("/contact/:index", (req, res) => {
@@ -53,11 +57,19 @@ server.put("/contact/:index", (req, res) => {
   console.log(index);
 
   contacts[index] = { name: name };
-  return res.json(contacts);
+  return res.json({
+    success: true,
+    message: "Contato adicionado com sucesso!",
+    contacts: contacts,
+  });
 });
 
 server.delete("/contact/:index", (req, res) => {
   const { index } = req.params;
   contacts.splice(index, 1);
-  return res.json(contacts);
+  return res.json({
+    success: true,
+    message: "Contato removido com sucesso!",
+    contacts: contacts,
+  });
 });
