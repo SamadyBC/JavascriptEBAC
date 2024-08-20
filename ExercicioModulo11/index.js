@@ -37,7 +37,11 @@ const contacts = [
 ];
 
 server.get("/contact", (req, res) => {
-  return res.json(contacts);
+  return res.json({
+    success: true,
+    message: "Contatos retornados com sucesso!",
+    contacts: contacts,
+  });
 });
 
 // Adiciona a lista

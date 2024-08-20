@@ -1,6 +1,10 @@
 const elem = document.getElementById("title");
 elem.innerHTML = "Rodando Node.js";
 
+/*
+const elem = $("#title");
+elem.html("Rodando Node.js");
+*/
 const actionSelect = document.getElementById("action");
 const containerInsertions = document.getElementById("container");
 const insertBeforeButton = document.getElementById("ref-button");
@@ -68,8 +72,42 @@ document
     const list = document.getElementById("list");
     const url = "http://localhost:3001/contact";
 
+    function fetchRequest(method, url, data) {
+      const options = {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+
+      if (method === "GET" || method === "DELETE") {
+        delete options.body; // GET e DELETE não usam corpo na requisição
+      }
+
+      fetch(url, options)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro na requisição: " + response.statusText);
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          // Manipula a resposta do servidor
+          if (data.success) {
+            console.log("Requisição deu certo");
+          } else {
+            console.error("A requisição falhou:");
+          }
+        })
+        .catch(function (error) {
+          console.error("Erro na requisição:", error);
+        });
+    }
+
     switch (action) {
       case "get":
+        //fetchRequest('GET', url);
         fetch(url, { method: "get" })
           .then((response) => response.json())
           .then(function (data) {
@@ -81,6 +119,7 @@ document
           });
         break;
       case "post":
+        //fetchRequest('POST', url, { key: "value" });
         const name = document.getElementById("data-input-0").value;
         const dataToSend = { name: name };
         fetch(url, {
@@ -109,6 +148,7 @@ document
           });
         break;
       case "put":
+        //fetchRequest('PUT', url, { key: "value" });
         const updatedData = document.getElementById("data-input-1").value;
         const dataToUpdate = { name: updatedData };
         const index = document.getElementById("data-input-0").value;
@@ -137,6 +177,7 @@ document
           });
         break;
       case "delete":
+        //fetchRequest('DELETE', url);
         const indexDel = document.getElementById("data-input-0").value;
         const delUrl = url + "/" + indexDel;
         console.log(delUrl);
@@ -165,3 +206,60 @@ document
         console.log("Ação não reconhecida.");
     }
   });
+
+/*
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('ref-button').addEventListener('click', function(event) {
+                event.preventDefault(); // Impede o envio do formulário
+
+                // Obtém o valor selecionado
+                const action = document.getElementById('action').value;
+                const url = "http://localhost:3001/contact";
+
+                // Função para fazer uma requisição usando a Fetch API
+                function fetchRequest(method, url, data) {
+                    const options = {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    };
+
+                    if (method === 'GET' || method === 'DELETE') {
+                        delete options.body; // GET e DELETE não usam corpo na requisição
+                    }
+
+                    fetch(url, options)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro na requisição: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => console.log("Resposta:", data))
+                        .catch(error => console.error("Erro:", error));
+                }
+
+                // Executa a ação com base no valor selecionado
+                switch (action) {
+                    case 'get':
+                        fetchRequest('GET', url);
+                        break;
+                    case 'post':
+                        fetchRequest('POST', url, { key: "value" });
+                        break;
+                    case 'put':
+                        fetchRequest('PUT', url, { key: "value" });
+                        break;
+                    case 'delete':
+                        fetchRequest('DELETE', url);
+                        break;
+                    default:
+                        console.log("Ação não reconhecida.");
+                }
+            });
+        });
+    </script>
+*/
