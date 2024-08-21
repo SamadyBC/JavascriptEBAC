@@ -1,6 +1,6 @@
 class UserAccount {
   id: number;
-  name: string;
+  readonly name: string;
 
   constructor(name: string, id: number) {
     this.id = id;

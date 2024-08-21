@@ -1,4 +1,5 @@
 "use strict";
+// Descrevem estruturas de objetos
 const filme1 = {
     id: 1,
     title: "Joaozinho no barco de fogo",
