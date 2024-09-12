@@ -2,13 +2,24 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
   font-family: sans-serif;
-  color: #00f;
-  font-size: 3rem;
+  color: #009;
+  font-size: 2rem;
 
   span {
-    color: #f00;
+    color: #454545;
     display: block;
+    font-size: 1.5rem
   }
+`;
+
+export const Subtitle = styled(Title)`
+  font-size: 25px
+
+`;
+
+export const Item = styled.h4`
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 `;
 
 export const Btn = styled.button`

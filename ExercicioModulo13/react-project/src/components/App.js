@@ -3,47 +3,89 @@ import "./App.css";
 import * as React from "react";
 import Counter from "./Counter";
 import CounterState from "./Counter2";
-import { Title, Btn, BtnNew } from "./styles";
-import Switch from "@mui/material/Switch";
+import { Title, Btn, BtnNew, Subtitle, Item } from "./styles";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
 //const label = { inputProps: { "aria-label": "Switch demo" } };
 //const [value, setValue] = (React.useState < number) | (null > 2);
 
 function App() {
   const label = { inputProps: { "aria-label": "Switch demo" } };
-  const [value, setValue] = React.useState(2);
+  const [value0, setValue0] = React.useState(5);
+  const [value1, setValue1] = React.useState(4);
+  const [value2, setValue2] = React.useState(3);
+  const [value3, setValue3] = React.useState(3);
+  const [value4, setValue4] = React.useState(2);
+
   return (
     <div>
+      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       <Title>
-        Styled Components
-        <span> com react</span>
+        Samady Correa
+        <span> Dev Full Stack</span>
       </Title>
-      <Switch {...label} />
-      <Box sx={{ "& > legend": { mt: 2 } }}>
-        <Typography component="legend">Controlled</Typography>
+      <Subtitle>
+        Habilidades
+      </Subtitle>
+      <Box sx={{ "& > legend": { mt: 4 } }}>
+        <Typography component="legend">Javascript</Typography>
         <Rating
           name="simple-controlled"
-          value={value}
+          value={value0}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setValue0(newValue);
           }}
         />
-        <Typography component="legend">Read only</Typography>
-        <Rating name="read-only" value={value} readOnly />
-        <Typography component="legend">Disabled</Typography>
-        <Rating name="disabled" value={value} disabled />
-        <Typography component="legend">No rating given</Typography>
-        <Rating name="no-value" value={null} />
       </Box>
-      <Counter />
+      <Box sx={{ "& > legend": { mt: 2 } }}>
+        <Typography component="legend">Node.js</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value1}
+          onChange={(event, newValue) => {
+            setValue1(newValue);
+          }}
+        />
+      </Box>
+      <Box sx={{ "& > legend": { mt: 2 } }}>
+        <Typography component="legend">Express.js</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value2}
+          onChange={(event, newValue) => {
+            setValue2(newValue);
+          }}
+        />
+      </Box>
+      <Box sx={{ "& > legend": { mt: 2 } }}>
+        <Typography component="legend">Jquery.js</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value3}
+          onChange={(event, newValue) => {
+            setValue3(newValue);
+          }}
+        />
+      </Box>
+      <Box sx={{ "& > legend": { mt: 2 } }}>
+        <Typography component="legend">Webpack.js</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value4}
+          onChange={(event, newValue) => {
+            setValue4(newValue);
+          }}
+        />
+      </Box>
       <hr />
-      <CounterState />
-      <hr />
-      <Btn name="React Button" font="50" />
-      <BtnNew name="React Button" font="50" />
+      <Subtitle>Formacao</Subtitle>
+          <Item>Engenharia de Computacao - UFSC</Item>
+          <Item></Item>
+          <Item></Item>
+          <Item></Item>
     </div>
   );
 }
