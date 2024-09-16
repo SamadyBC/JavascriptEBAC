@@ -69,7 +69,7 @@ function TicTacToe() {
     if (tiles[index] !== null) {
       return;
     }
-    const newTiles = [...tiles]; // O que significa essa sintaxe?
+    const newTiles = [...tiles]; // A copy of the array is being made by this sintax
     newTiles[index] = playerTurn;
     setTiles(newTiles);
     if (playerTurn === PLAYER_X) {
