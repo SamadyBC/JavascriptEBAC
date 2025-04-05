@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export default class Counter extends Component {
   constructor(props) {
+    //Formula da classe no sistema
     super(props);
     this.state = {
       count: 0,
@@ -10,6 +11,7 @@ export default class Counter extends Component {
   componentDidMount() {
     document.title = `${this.state.count} cliques`;
   }
+
   componentDidUpdate() {
     document.title = `${this.state.count} cliques`;
   }

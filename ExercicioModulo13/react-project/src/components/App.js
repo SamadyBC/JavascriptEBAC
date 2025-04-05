@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
+import foto from "../Assets/Samady_Perfil.jpg";
 
 //const label = { inputProps: { "aria-label": "Switch demo" } };
 //const [value, setValue] = (React.useState < number) | (null > 2);
@@ -22,14 +23,12 @@ function App() {
 
   return (
     <div>
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       <Title>
+        <Avatar alt="Foto de Samady Correa" src={foto} />
         Samady Correa
         <span> Dev Full Stack</span>
       </Title>
-      <Subtitle>
-        Habilidades
-      </Subtitle>
+      <Subtitle>Habilidades</Subtitle>
       <Box sx={{ "& > legend": { mt: 4 } }}>
         <Typography component="legend">Javascript</Typography>
         <Rating
@@ -81,11 +80,13 @@ function App() {
         />
       </Box>
       <hr />
-      <Subtitle>Formacao</Subtitle>
-          <Item>Engenharia de Computacao - UFSC</Item>
-          <Item></Item>
-          <Item></Item>
-          <Item></Item>
+      <Subtitle>Formação:</Subtitle>
+      <Item>
+        Engenharia de Computacao - Universidade Federal de Santa Catarina
+      </Item>
+      <Item>Curso Javascript - EBAC</Item>
+      <Item></Item>
+      <Item></Item>
     </div>
   );
 }

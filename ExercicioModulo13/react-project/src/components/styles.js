@@ -8,13 +8,12 @@ export const Title = styled.h1`
   span {
     color: #454545;
     display: block;
-    font-size: 1.5rem
+    font-size: 1.5rem;
   }
 `;
 
 export const Subtitle = styled(Title)`
-  font-size: 25px
-
+  font-size: 25px;
 `;
 
 export const Item = styled.h4`
