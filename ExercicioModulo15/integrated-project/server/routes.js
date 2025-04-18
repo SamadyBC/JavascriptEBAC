@@ -9,9 +9,9 @@ routes.get("/properties", PropertiesController.read);
 
 routes.post("/properties", PropertiesController.create);
 
-routes.delete("/properties", PropertiesController.delete);
+routes.delete("/properties/:id", PropertiesController.delete);
 
-routes.put("/properties", PropertiesController.update);
+routes.put("/properties/:id", PropertiesController.update);
 
 routes.get("/", (request, response) => {
   return response.json({
