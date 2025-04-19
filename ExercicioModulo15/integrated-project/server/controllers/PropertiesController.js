@@ -55,6 +55,7 @@ module.exports = {
 
   async delete(request, response) {
     // Recebe o id por parametro na URL
+    // Teste de commit
     const deleteObjId = request.params;
     const propertiesList = await Properties.findByIdAndDelete({
       _id: deleteObjId.id,
