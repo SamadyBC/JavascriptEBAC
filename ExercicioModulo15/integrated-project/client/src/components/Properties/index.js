@@ -20,8 +20,7 @@ const initialState = {
         type: '',
         title: '',
         description: ''
-    },
-    properties: []
+    }
 }
 
 export default class Properties extends Component {
@@ -54,13 +53,6 @@ export default class Properties extends Component {
 
     }
 
-    /* Atualiza lista de imóveis */
-    getUpdatedList(propertie){
-        const list = this.state.list?.filter(p => p._id !== propertie._id) // filtra a lista de imóveis, removendo o imóvel que foi atualizado
-        if(propertie) list.unshift(propertie) // se o imóvel existe, adiciona ele no início da lista
-        return list
-    }
-
     /* Atualiza Imóvel */
     update(event) {
         const propertie = { ...this.state.propertie }
@@ -71,7 +63,7 @@ export default class Properties extends Component {
     componentDidMount(){
         axios.get(baseUrl)
             .then(response => {
-                this.setState({ list: response.data })
+                this.setState({ list: response.data }) // 
             })
             .catch((error) => {
                 console.log(error)
@@ -80,9 +72,11 @@ export default class Properties extends Component {
 
     /* Atualiza lista de imóveis */
     getUpdatedList(propertie){
-        console.log(propertie)
+        console.log("Get update 2: ", propertie)
         const list = this.state.list.filter(p => p._id !== propertie._id)
-        if(propertie) list.unshift(propertie)
+        if(propertie) {
+            list.unshift(propertie)
+        }
         return list
     }
 
@@ -147,8 +141,7 @@ export default class Properties extends Component {
         console.log(propertie)
         axios.delete(`${baseUrl}/${propertie._id }`)
             .then(response => {
-                // const list = this.state.list.filter( p => p._id !== propertie._id )
-                const list = this.getUpdatedList(null)
+                const list = this.state.list.filter( p => p._id !== propertie._id )
                 this.setState({ list })
             })
     }

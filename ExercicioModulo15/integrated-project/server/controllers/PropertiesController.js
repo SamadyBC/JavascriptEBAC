@@ -59,10 +59,10 @@ module.exports = {
     const deleteObjId = request.params;
     const propertiesList = await Properties.findByIdAndDelete({
       _id: deleteObjId.id,
-    });
+    })
 
     if (propertiesList) {
-      response.status(200).json();
+      response.status(200).json({ message: "Property deleted successfully" });
     } else {
       response.status(500).json({ error: "Id Invalido" });
     }
