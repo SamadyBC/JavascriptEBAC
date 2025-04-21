@@ -39,12 +39,12 @@ export default class Properties extends Component {
 
     /* Cria Imóvel */
     save(){
-        const propertie= this.state.propertie
-        const method  = propertie._id? 'put' : 'post'
-        const url = propertie._id? `${baseUrl}/${propertie._id }` : `${baseUrl}`
-        axios[method](url, propertie)
-            .then(response => {
-                // promisse
+        const propertie= this.state.propertie // recebe as propriedades da instancia da classe em questao
+        const method  = propertie._id? 'put' : 'post' // methodo HTTP - se o id do imóvel já existe, atualiza, senão cria um novo
+        const url = propertie._id? `${baseUrl}/${propertie._id }` : `${baseUrl}` // se o id existe anexa a url o id, senao somente o baseUrl
+        axios[method](url, propertie) // axios é uma biblioteca para fazer requisições HTTP - pesquisar axios
+            .then(response => { //aqui
+                // promise
                 const list = this.getUpdatedList(response.data)
                 this.setState({ propertie: initialState.propertie, list })
             })
@@ -56,8 +56,8 @@ export default class Properties extends Component {
 
     /* Atualiza lista de imóveis */
     getUpdatedList(propertie){
-        const list = this.state.list?.filter(p => p._id !== propertie._id)
-        if(propertie) list.unshift(propertie)
+        const list = this.state.list?.filter(p => p._id !== propertie._id) // filtra a lista de imóveis, removendo o imóvel que foi atualizado
+        if(propertie) list.unshift(propertie) // se o imóvel existe, adiciona ele no início da lista
         return list
     }
 
