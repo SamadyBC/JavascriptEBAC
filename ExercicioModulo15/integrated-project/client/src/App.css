@@ -1,9 +1,39 @@
-
+/* Conteiner principal: empilha no mobile, alinha em fila no desktop */
 .content {
-  padding-top: 10rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;   /* Padrão mobile: empilhado */
+  gap: 2rem;                /* Espaçamento entre as seções */
+  padding: 2rem;
+  width: 100%;              /* O .content ocupa a largura total disponível */
 }
+
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;    /* Em telas maiores, lado a lado */
+    justify-content: space-around; /* Espaçamento simétrico entre as seções */
+    align-items: stretch;   /* Faz os blocos (form e lista) preencherem a altura */
+  }
+}
+
+/* Seções do form e da lista */
+.form-section {
+  flex: 0 0 500px;            /* Mantém a largura fixa */
+  display: flex;              /* Transforma o bloco num flex container */
+  flex-direction: column;     /* Alinha os elementos dentro verticalmente */
+  justify-content: center;    /* Centraliza no eixo vertical */
+  align-items: center;        /* Centraliza no eixo horizontal */
+  background: #f9f9f9;        /* Opcional: cor de fundo para destacar */
+  border-radius: 0.4rem;      /* Bordas arredondadas */
+  height: 100%;               /* Faz o bloco ocupar toda a altura disponível */
+  padding: 2rem;              /* Espaçamento interno */
+}
+
+.list-section {
+  flex: 1;                 /* ocupa o restante do espaço */
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
 .actions {
   display: flex;
   flex-direction: row;
@@ -12,9 +42,11 @@
 
 form {
   display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-  width: 25rem;
+  flex-direction: column; /* Campos em coluna */
+  gap: 1rem;              /* Espaço entre os campos e botões */
+  width: 100%;            /* Ocupa toda a largura disponível */
+  max-width: 280px;       /* Limita a largura */
+  margin: 0 auto;         /* Centraliza horizontalmente */
 }
 
 button {
