@@ -64,8 +64,12 @@ button:hover {
   opacity: .8;
 }
 
+.btn-about {
+  background-color: rgb(0, 204, 78);
+}
+
 .btn-edit {
-  background-color: #0c0;
+  background-color: rgb(204, 190, 0);
 }
 
 .btn-delete {

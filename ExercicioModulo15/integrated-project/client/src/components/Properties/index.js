@@ -3,6 +3,10 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -20,6 +24,8 @@ const initialState = {
     type: "",
     title: "",
     description: "",
+    aboutOpen: false,
+    aboutItem: null,
   },
 };
 
@@ -28,6 +34,8 @@ export default class Properties extends Component {
   constructor(props) {
     super(props);
     this.state = { ...initialState };
+    this.sobre = this.sobre.bind(this);
+    this.closeSobre = this.closeSobre.bind(this);
   }
 
   /* Limpa formulário */
@@ -115,15 +123,16 @@ export default class Properties extends Component {
               variant="body2"
               color="text.primary"
             >
-              <Tooltip title={response.type}>
-                <h3>{response.title}</h3>
-              </Tooltip>
+              <h3>{response.title}</h3>
             </Typography>
             <Typography variant="body2">{response.description}</Typography>
           </Box>
         </Box>
         {/* Direita: Botões de Ação */}
         <Box className="actions" sx={{ display: "flex", gap: "0.5rem" }}>
+          <button className="btn-about" onClick={() => this.sobre(response)}>
+            Sobre
+          </button>
           <button className="btn-edit" onClick={() => this.load(response)}>
             Alterar
           </button>
@@ -149,8 +158,19 @@ export default class Properties extends Component {
     });
   }
 
+  // Abre o dialog e define o item a exibir
+  sobre(propertie) {
+    this.setState({ aboutOpen: true, aboutItem: propertie });
+  }
+
+  // Fecha o dialog e limpa o item
+  closeSobre() {
+    this.setState({ aboutOpen: false, aboutItem: null });
+  }
+
   /* Renderiza formulário de cadastro */
   renderForm() {
+    const { propertie } = this.state;
     return (
       <Box
         component="form"
@@ -160,7 +180,19 @@ export default class Properties extends Component {
         noValidate
         autoComplete="off"
       >
-        {this.state.propertie._id}
+        {propertie._id && (
+          <>
+            <Typography variant="h6">Id</Typography>
+            <TextField
+              name="_id"
+              value={propertie._id}
+              valiant="outlined"
+              InputProps={{ readOnly: true }} // ou use disabled
+              sx={{ bgcolor: "#f5f5f5", borderRadius: 1, mb: 2 }}
+            />
+          </>
+        )}
+        <Typography variant="h6">Titulo</Typography>
         <TextField
           valiant="outlined"
           type="text"
@@ -169,7 +201,7 @@ export default class Properties extends Component {
           onChange={(e) => this.update(e)}
           placeholder="digite o título do anúncio"
         />
-
+        <Typography variant="h6">Tipo</Typography>
         <TextField
           valiant="outlined"
           type="text"
@@ -178,14 +210,14 @@ export default class Properties extends Component {
           onChange={(e) => this.update(e)}
           placeholder="digite o tipo do imóvel"
         />
-
+        <Typography variant="h6">Descrição</Typography>
         <TextField
           valiant="outlined"
           type="text"
           name="description"
           value={this.state.propertie.description}
           onChange={(e) => this.update(e)}
-          placeholder="digite a descrição"
+          placeholder="digite a descrição do imóvel"
         />
 
         <Stack spacing={2} direction="row">
@@ -203,11 +235,38 @@ export default class Properties extends Component {
   /* Renderiza formulário e lista */
   render() {
     console.log(this.state.list);
+    const { aboutOpen, aboutItem } = this.state;
     return (
-      <div className="content">
-        <div className="form-section">{this.renderForm()}</div>
-        <div className="list-section">{this.renderProperties()}</div>
-      </div>
+      <>
+        <div className="content">
+          <div className="form-section">{this.renderForm()}</div>
+          <div className="list-section">{this.renderProperties()}</div>
+        </div>
+
+        {/* ——— Dialog de “Sobre” ——— */}
+        <Dialog
+          open={aboutOpen}
+          onClose={this.closeSobre}
+          fullWidth
+          maxWidth="sm"
+        >
+          <DialogTitle>{aboutItem?.title || "Detalhes do Imóvel"}</DialogTitle>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              <strong>Tipo:</strong> {aboutItem?.type}
+            </Typography>
+            <Typography gutterBottom>
+              <strong>Descrição:</strong> {aboutItem?.description}
+            </Typography>
+            {/* aqui você pode exibir mais campos, imagens, etc. */}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.closeSobre} color="primary">
+              Fechar
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </>
     );
   }
 }
